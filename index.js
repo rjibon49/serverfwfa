@@ -2,7 +2,6 @@ const express = require ('express');
 const app = express();
 const { MongoClient, ServerApiVersion  } = require('mongodb');
 const cors = require ('cors');
-const res = require('express/lib/response');
 const ObjectId = require("mongodb").ObjectId;
 
 require("dotenv").config();
@@ -318,3 +317,5 @@ app.listen(port, () => {
 // const cursor appointmentsCollection.find(query);
 // const appointsments = await cursor.toArray();
 // res.json(appointsments);
+
+// const res = require('express/lib/response');
