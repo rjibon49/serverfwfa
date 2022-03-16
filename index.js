@@ -1,12 +1,10 @@
 const express = require ('express');
-const app = express();
 const { MongoClient, ServerApiVersion  } = require('mongodb');
 const cors = require ('cors');
 const ObjectId = require("mongodb").ObjectId;
-
 require("dotenv").config();
 
-
+const app = express();
 const port = process.env.PORT || 5000;
 
 // WdrMnCSslW9WjoZe
@@ -255,7 +253,7 @@ async function run() {
       const query ={email:email};
       const user = await storeUsersCollection.findOne(query);
       let isAdmin = false;
-      if(user.role === 'admin') {
+      if(user?.role=== 'admin') {
         isAdmin = true;
       }
       res.json({admin: isAdmin})
