@@ -54,6 +54,14 @@ async function run() {
       res.send(article);
   })
 
+  //Get Single Data Form article ID
+  app.get('/article/:id', async (req, res) => {
+    const id = req.params.id;
+    const query = { _id: ObjectId(id) };
+    const article = await storeArticleCollection.findOne(query);
+    res.json(article);
+  });
+
   // ARTICLE POST API 
       app.post('/article', async(req, res) => {
           const newArticle = req.body;
