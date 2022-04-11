@@ -1,5 +1,5 @@
 const express = require ('express');
-const { MongoClient, ServerApiVersion  } = require('mongodb');
+const { MongoClient, ServerApiVersion, Timestamp  } = require('mongodb');
 const cors = require ('cors');
 const ObjectId = require("mongodb").ObjectId;
 require("dotenv").config();
@@ -64,7 +64,7 @@ async function run() {
 
   // ARTICLE POST API 
       app.post('/article', async(req, res) => {
-          const newArticle = req.body;
+          const newArticle = req.body || new Date();
           const result = await storeArticleCollection.insertOne(newArticle);
           console.log(result);
           res.json(result);
