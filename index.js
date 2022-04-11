@@ -1,8 +1,12 @@
 const express = require ('express');
-const { MongoClient, ServerApiVersion, Timestamp  } = require('mongodb');
+// const fwfa = require("./fwfaDB");
+const { MongoClient, ServerApiVersion  } = require('mongodb');
 const cors = require ('cors');
 const ObjectId = require("mongodb").ObjectId;
 require("dotenv").config();
+
+// const article = require('./models/ArticleModel')
+
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -64,8 +68,10 @@ async function run() {
 
   // ARTICLE POST API 
       app.post('/article', async(req, res) => {
-          const newArticle = req.body || new Date();
-          const result = await storeArticleCollection.insertOne(newArticle);
+          const newArticle = req.body;
+          const result = await storeArticleCollection.insertOne(newArticle,{
+            timestamps:true,
+        });
           console.log(result);
           res.json(result);
       })
